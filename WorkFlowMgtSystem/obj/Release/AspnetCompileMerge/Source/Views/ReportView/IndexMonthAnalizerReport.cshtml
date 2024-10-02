@@ -1,0 +1,179 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.ViewModels.RptSumeryMonth>
+@{
+    ViewBag.Title = "Report Month Analyzer";
+}
+
+
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Report View Month Analyzer </h3>
+            <br />
+            <h3 class="box-title">@Model.First().Defietionx</h3>
+            <div class="btn btn-info pl_add btn-small pull-right">
+                @Html.ActionLink("Back", "IndexMonthAnalizer", "ReportView", new { Id = @Convert.ToInt32(Session["loggeduserid"].ToString()) }, new { @style = "font-size: 12px;color:white;font-family: 'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+            </div>
+
+        </div>
+
+
+        <div class="box-body">
+           @* <table id="customers" class="table table-bordered table-striped">*@
+                <table id="customers" class="ui-resizable">
+                    <thead>
+                        <tr>
+
+                            @*<th>Inquiry Type </th>
+                    <th>Total Inquiry</th>*@
+
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobType)</th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobJanCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobFebCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobMarCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobAprCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobMayCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobJuneCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobJuyCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobAugCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobSepCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobOctCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobNovCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobDecCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.First().JobSumCount) </th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+
+                        {
+
+
+                            <tr>
+                                @if (item.Id != 0 && item.Id != 1000)
+                                {
+
+
+                                    @* <td>@Html.DisplayFor(modelItem => item.JobType) </td>*@
+
+                                    <td style="font-weight:bold">@Html.DisplayFor(modelItem => item.JobType) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobJanCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobFebCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobMarCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobAprCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobMayCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobJuneCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobJuyCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobAugCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobSepCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobOctCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobNovCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobDecCount) </td>
+                                    <td>@Html.DisplayFor(modelItem => item.JobSumCount) </td>
+
+
+                                }
+
+
+                            </tr>
+                        }
+                    </tbody>
+
+
+
+                    <tfoot>
+                        @*<tr>
+                    <th>Inquiry </th>
+                    <th>Count</th>
+
+                </tr>*@
+
+                        <tr>
+
+                            @*<th>Inquiry Type </th>
+                    <th>Total Inquiry</th>*@
+
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobType)</th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobJanCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobFebCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobMarCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobAprCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobMayCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobJuneCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobJuyCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobAugCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobSepCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobOctCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobNovCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobDecCount) </th>
+                            <th>@Html.DisplayFor(modelItem => Model.Last().JobSumCount) </th>
+
+                        </tr>
+                    </tfoot>
+                </table>
+
+        </div>
+
+       @* <h3 class="box-title">Location Report View</h3>*@
+        <br />
+        
+    </div>
+</div>
+
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+<script>
+
+    $.getJSON("@Url.Action("GetInquiryStatus", "InquiryStatus")", function (data) {
+
+        var userGroupDropDown = $("#InquiryId");
+
+        userGroupDropDown.empty();
+        userGroupDropDown.append("<option value='0'>-- Select Job Statues --</option>");
+
+        $.each(JSON.parse(data), function (index, optionaldata) {
+            userGroupDropDown.append($('<option />', { value: optionaldata.InquiryStstusID }).html(optionaldata.InquiryName));
+        });
+
+        if ('@ViewBag.InquiryId') {
+            $('#InquiryId').val(@ViewBag.InquiryId).trigger("change");
+        } else {
+            $('#InquiryId').val(0).trigger("change");
+        }
+
+
+    });
+
+</script>
+
+<style>
+    #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>

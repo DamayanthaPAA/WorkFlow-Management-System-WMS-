@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DesignSolutionsModelStoreContainer" CdmEntityContainer="DesignSolutionsEntities">
+    <EntitySetMapping Name="CustomerMasters">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.CustomerMaster">
+        <MappingFragment StoreEntitySet="CustomerMaster">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+          <ScalarProperty Name="CustomerOrigin" ColumnName="CustomerOrigin" />
+          <ScalarProperty Name="CustomerCurrLocation" ColumnName="CustomerCurrLocation" />
+          <ScalarProperty Name="CustomerTitle" ColumnName="CustomerTitle" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+          <ScalarProperty Name="CustomerTelephone01" ColumnName="CustomerTelephone01" />
+          <ScalarProperty Name="CustomerTelephone02" ColumnName="CustomerTelephone02" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CustomerMobile" ColumnName="CustomerMobile" />
+          <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerOrders">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.CustomerOrder">
+        <MappingFragment StoreEntitySet="CustomerOrder">
+          <ScalarProperty Name="CustomerOrderID" ColumnName="CustomerOrderID" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+          <ScalarProperty Name="AllocatedDate" ColumnName="AllocatedDate" />
+          <ScalarProperty Name="CustomerOrderName" ColumnName="CustomerOrderName" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inquiries">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.Inquiry">
+        <MappingFragment StoreEntitySet="Inquiry">
+          <ScalarProperty Name="InquiryID" ColumnName="InquiryID" />
+          <ScalarProperty Name="CustomerOrderID" ColumnName="CustomerOrderID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="InquiryStatusID" ColumnName="InquiryStatusID" />
+          <ScalarProperty Name="HandledBy" ColumnName="HandledBy" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="NextInqID" ColumnName="NextInqID" />
+          <ScalarProperty Name="NextInqDate" ColumnName="NextInqDate" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="AllocatedRef" ColumnName="AllocatedRef" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InquiryStatusMasters">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.InquiryStatusMaster">
+        <MappingFragment StoreEntitySet="InquiryStatusMaster">
+          <ScalarProperty Name="InquiryID" ColumnName="InquiryID" />
+          <ScalarProperty Name="InquiryName" ColumnName="InquiryName" />
+          <ScalarProperty Name="InquirySequence" ColumnName="InquirySequence" />
+          <ScalarProperty Name="InquiryStatus" ColumnName="InquiryStatus" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="LocationRemarks" ColumnName="LocationRemarks" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+          <ScalarProperty Name="LocationStatus" ColumnName="LocationStatus" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.SystemUser">
+        <MappingFragment StoreEntitySet="SystemUser">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+          <ScalarProperty Name="UserPhone01" ColumnName="UserPhone01" />
+          <ScalarProperty Name="UserPhone02" ColumnName="UserPhone02" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionDocuments">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.TransactionDocument">
+        <MappingFragment StoreEntitySet="TransactionDocument">
+          <ScalarProperty Name="TransactionDocumentID" ColumnName="TransactionDocumentID" />
+          <ScalarProperty Name="TransactionDocumentNumber" ColumnName="TransactionDocumentNumber" />
+          <ScalarProperty Name="TransactionDocumentName" ColumnName="TransactionDocumentName" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionRights">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.TransactionRight">
+        <MappingFragment StoreEntitySet="TransactionRight">
+          <ScalarProperty Name="TransactionRightID" ColumnName="TransactionRightID" />
+          <ScalarProperty Name="TransactionDocumentID" ColumnName="TransactionDocumentID" />
+          <ScalarProperty Name="TransactionRightCode" ColumnName="TransactionRightCode" />
+          <ScalarProperty Name="IsAccess" ColumnName="IsAccess" />
+          <ScalarProperty Name="IsModify" ColumnName="IsModify" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsView" ColumnName="IsView" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroups">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.UserGroup">
+        <MappingFragment StoreEntitySet="UserGroup">
+          <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+          <ScalarProperty Name="UserGroupName" ColumnName="UserGroupName" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroupPrivileges">
+      <EntityTypeMapping TypeName="DesignSolutionsModel.UserGroupPrivilege">
+        <MappingFragment StoreEntitySet="UserGroupPrivileges">
+          <ScalarProperty Name="UserGroupPrivilegesID" ColumnName="UserGroupPrivilegesID" />
+          <ScalarProperty Name="TransactionRightsID" ColumnName="TransactionRightsID" />
+          <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+          <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+          <ScalarProperty Name="IsAccess" ColumnName="IsAccess" />
+          <ScalarProperty Name="IsSave" ColumnName="IsSave" />
+          <ScalarProperty Name="IsModify" ColumnName="IsModify" />
+          <ScalarProperty Name="IsView" ColumnName="IsView" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedUser" ColumnName="ModifiedUser" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

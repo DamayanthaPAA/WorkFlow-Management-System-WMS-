@@ -1,0 +1,133 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.ViewModels.RptSumery1>
+@{
+    ViewBag.Title = "Report View";
+}
+
+
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Report View</h3>
+            <br />
+            <h3 class="box-title">@Model.First().Defietion</h3>
+            <div class="btn btn-info pl_add btn-small pull-right">
+                    @Html.ActionLink("Back", "Index", "ReportView", new { Id = @Convert.ToInt32(Session["loggeduserid"].ToString()) }, new { @style = "font-size: 12px;color:white;font-family: 'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+                </div>
+
+        </div>
+
+
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                         
+                        <th>Inquiry Type </th>
+                        <th>Total Inquiry</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            
+                            
+                            <td>@Html.DisplayFor(modelItem => item.JobType) </td>
+                            <td>@Html.DisplayFor(modelItem => item.JobCount)</td>
+                             
+
+
+                        </tr>
+                    }
+                </tbody>
+
+
+
+                <tfoot>
+                    <tr>
+                        <th>Inquiry </th>
+                        <th>Count</th>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <h3 class="box-title">Location Report View</h3>
+        <br />
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Inquiry Type </th>
+                        <th>Total Inquiry</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.First()._RptSumery2.OrderBy(k =>k.ShowRoom))
+            {
+                        <tr>
+
+                            <td>@Html.DisplayFor(modelItem => item.ShowRoom) </td>
+                            <td>@Html.DisplayFor(modelItem => item.JobTypeShowRoom) </td>
+                            <td>@Html.DisplayFor(modelItem => item.JobCountShowRoom)</td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+
+
+
+                <tfoot>
+                    <tr>
+                        <th>Location</th>
+                        <th>Inquiry </th>
+                        <th>Count</th>
+
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+<script>
+
+    $.getJSON("@Url.Action("GetInquiryStatus", "InquiryStatus")", function (data) {
+
+        var userGroupDropDown = $("#InquiryId");
+
+        userGroupDropDown.empty();
+        userGroupDropDown.append("<option value='0'>-- Select Job Statues --</option>");
+
+        $.each(JSON.parse(data), function (index, optionaldata) {
+            userGroupDropDown.append($('<option />', { value: optionaldata.InquiryStstusID }).html(optionaldata.InquiryName));
+        });
+
+        if ('@ViewBag.InquiryId') {
+            $('#InquiryId').val(@ViewBag.InquiryId).trigger("change");
+        } else {
+            $('#InquiryId').val(0).trigger("change");
+        }
+
+
+    });
+
+</script>
+
+ 

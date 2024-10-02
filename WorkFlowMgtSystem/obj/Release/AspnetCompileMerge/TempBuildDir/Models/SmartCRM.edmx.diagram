@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="21494eedbddd42829f8aa1dab08ba917" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartCRMModel.AutoNumber" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.Customer" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.CustomersGroup" Width="1.5" PointX="1.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.GroupsPrivilege" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.Inquiry" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.InquiryFile" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.InquiryStatu" Width="1.5" PointX="8.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.Location" Width="1.5" PointX="3.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.Order" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.User" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.UserGroup" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartCRMModel.OrderSummery" Width="1.5" PointX="8.75" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="SmartCRMModel.FK_Customer_CustomersGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Inquiry_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Inquiry_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Inquiry_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_InquiryFile_Inquiry" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Order_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.FK_Order_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartCRMModel.UsersGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

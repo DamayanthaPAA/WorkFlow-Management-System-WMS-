@@ -1,0 +1,1098 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SmartCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutoNumber">
+          <Key>
+            <PropertyRef Name="Reason" />
+          </Key>
+          <Property Name="Reason" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Autonumber" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerGroupID" Type="int" Nullable="false" />
+          <Property Name="CustomerCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CustomerOrigin" Type="int" Nullable="false" />
+          <Property Name="CustomerTitle" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CustomerAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerTelephone01" Type="nvarchar" MaxLength="13" />
+          <Property Name="CustomerTelephone02" Type="nvarchar" MaxLength="13" />
+          <Property Name="CustomerMobile" Type="nvarchar" MaxLength="13" />
+          <Property Name="CustomerEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CustomersGroup">
+          <Key>
+            <PropertyRef Name="CustomerGroupID" />
+          </Key>
+          <Property Name="CustomerGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupsPrivilege">
+          <Key>
+            <PropertyRef Name="UserGroupID" />
+            <PropertyRef Name="URL" />
+          </Key>
+          <Property Name="UserGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsCretae" Type="bit" Nullable="false" />
+          <Property Name="IsEdit" Type="bit" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="IsView" Type="bit" />
+          <Property Name="IsPrint" Type="bit" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Inquiry">
+          <Key>
+            <PropertyRef Name="InquiryID" />
+          </Key>
+          <Property Name="InquiryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="InquiryStatusID" Type="int" Nullable="false" />
+          <Property Name="HandledBy" Type="int" Nullable="false" />
+          <Property Name="AllocatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NextInqDate" Type="datetime" />
+          <Property Name="AddedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="InquiryName" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InquiryFile">
+          <Key>
+            <PropertyRef Name="InquiryFileID" />
+          </Key>
+          <Property Name="InquiryFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InquiryID" Type="int" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InquiryFileImage" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InquiryStatus">
+          <Key>
+            <PropertyRef Name="InquiryStstusID" />
+          </Key>
+          <Property Name="InquiryStstusID" Type="int" Nullable="false" />
+          <Property Name="InquiryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="InquirySequence" Type="int" Nullable="false" />
+          <Property Name="InquiryStatus" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LocationAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="13" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="13" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="13" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPersonName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationRemarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocationStatus" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="RegisteredDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReferenceUserID" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="HandledByUserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserCode" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="UserFullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserPhone01" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="UserPhone02" Type="varchar" MaxLength="13" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserGroupID" Type="int" Nullable="false" />
+          <Property Name="UserStatus" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="UserGroupID" />
+          </Key>
+          <Property Name="UserGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserGroupName" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersGroup">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="UserGroupID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserGroupID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartCRM.dbo.OrderSummery' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderSummery">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="OrderCode" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="RegisteredDate" />
+            <PropertyRef Name="OrderName" />
+            <PropertyRef Name="ReferenceUserID" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedUserID" />
+            <PropertyRef Name="HandledByUserID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="LocationID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="RegisteredDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReferenceUserID" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="int" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="HandledByUserID" Type="int" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="30" />
+          <Property Name="CustomerCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReferenceUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="InquiryID" Type="int" />
+          <Property Name="InquiryStatus" Type="bit" />
+          <Property Name="InquiryStatusID" Type="int" />
+          <Property Name="InquiryName" Type="nvarchar" MaxLength="150" />
+          <Property Name="HandledBy" Type="int" />
+          <Property Name="HandledByName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AllocatedDate" Type="datetime" />
+          <Property Name="Telephone" Type="varchar" MaxLength="13" />
+          <Property Name="InquiryRemark" Type="nvarchar" MaxLength="50" />
+          <Property Name="NextInqDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SmartCRM.dbo.OrderSummeryConclude' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="OrderSummeryConclude">
+          <Property Name="Row" Type="bigint" />
+          <Property Name="InquiryName" Type="nvarchar" MaxLength="150" />
+          <Property Name="NoOfJob" Type="int" />
+          <Property Name="InquiryStatusID" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SmartCRM.dbo.OrderSummerySum' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="OrderSummerySum">
+          <Property Name="Row" Type="bigint" />
+          <Property Name="InquiryName" Type="nvarchar" MaxLength="150" />
+          <Property Name="NoOfJob" Type="int" />
+          <Property Name="InquiryStatusID" Type="int" />
+        </EntityType>-->
+        <Association Name="FK_Customer_CustomersGroup">
+          <End Role="CustomersGroup" Type="Self.CustomersGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomersGroup">
+              <PropertyRef Name="CustomerGroupID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CustomerGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="HandledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="ModifiedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InquiryFile_Inquiry">
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="1" />
+          <End Role="InquiryFile" Type="Self.InquiryFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inquiry">
+              <PropertyRef Name="InquiryID" />
+            </Principal>
+            <Dependent Role="InquiryFile">
+              <PropertyRef Name="InquiryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ReferenceUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="HandledByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersGroup_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersGroup" Type="Self.UsersGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UsersGroup">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersGroup_UserGroup">
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1" />
+          <End Role="UsersGroup" Type="Self.UsersGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="UserGroupID" />
+            </Principal>
+            <Dependent Role="UsersGroup">
+              <PropertyRef Name="UserGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SmartCRMModelStoreContainer">
+          <EntitySet Name="AutoNumber" EntityType="Self.AutoNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomersGroup" EntityType="Self.CustomersGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupsPrivilege" EntityType="Self.GroupsPrivilege" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inquiry" EntityType="Self.Inquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InquiryFile" EntityType="Self.InquiryFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InquiryStatus" EntityType="Self.InquiryStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersGroup" EntityType="Self.UsersGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderSummery" EntityType="Self.OrderSummery" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderSummery].[OrderID] AS [OrderID], 
+    [OrderSummery].[OrderCode] AS [OrderCode], 
+    [OrderSummery].[LocationID] AS [LocationID], 
+    [OrderSummery].[CustomerID] AS [CustomerID], 
+    [OrderSummery].[RegisteredDate] AS [RegisteredDate], 
+    [OrderSummery].[OrderName] AS [OrderName], 
+    [OrderSummery].[ReferenceUserID] AS [ReferenceUserID], 
+    [OrderSummery].[Remark] AS [Remark], 
+    [OrderSummery].[CreatedDate] AS [CreatedDate], 
+    [OrderSummery].[CreatedUserID] AS [CreatedUserID], 
+    [OrderSummery].[ModifiedUserID] AS [ModifiedUserID], 
+    [OrderSummery].[ModifiedDate] AS [ModifiedDate], 
+    [OrderSummery].[HandledByUserID] AS [HandledByUserID], 
+    [OrderSummery].[LocationName] AS [LocationName], 
+    [OrderSummery].[CustomerCode] AS [CustomerCode], 
+    [OrderSummery].[CustomerName] AS [CustomerName], 
+    [OrderSummery].[ReferenceUser] AS [ReferenceUser], 
+    [OrderSummery].[InquiryID] AS [InquiryID], 
+    [OrderSummery].[InquiryStatus] AS [InquiryStatus], 
+    [OrderSummery].[InquiryStatusID] AS [InquiryStatusID], 
+    [OrderSummery].[InquiryName] AS [InquiryName], 
+    [OrderSummery].[HandledBy] AS [HandledBy], 
+    [OrderSummery].[HandledByName] AS [HandledByName], 
+    [OrderSummery].[AllocatedDate] AS [AllocatedDate], 
+    [OrderSummery].[Telephone] AS [Telephone], 
+    [OrderSummery].[InquiryRemark] AS [InquiryRemark], 
+    [OrderSummery].[NextInqDate] AS [NextInqDate]
+    FROM [dbo].[OrderSummery] AS [OrderSummery]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Customer_CustomersGroup" Association="Self.FK_Customer_CustomersGroup">
+            <End Role="CustomersGroup" EntitySet="CustomersGroup" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Order" Association="Self.FK_Inquiry_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Inquiry" EntitySet="Inquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_User" Association="Self.FK_Inquiry_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Inquiry" EntitySet="Inquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_User1" Association="Self.FK_Inquiry_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Inquiry" EntitySet="Inquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InquiryFile_Inquiry" Association="Self.FK_InquiryFile_Inquiry">
+            <End Role="Inquiry" EntitySet="Inquiry" />
+            <End Role="InquiryFile" EntitySet="InquiryFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Location" Association="Self.FK_Order_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User1" Association="Self.FK_Order_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersGroup_User" Association="Self.FK_UsersGroup_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UsersGroup" EntitySet="UsersGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersGroup_UserGroup" Association="Self.FK_UsersGroup_UserGroup">
+            <End Role="UserGroup" EntitySet="UserGroup" />
+            <End Role="UsersGroup" EntitySet="UsersGroup" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartCRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AutoNumber">
+          <Key>
+            <PropertyRef Name="Reason" />
+          </Key>
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Autonumber1" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerGroupID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerOrigin" Type="Int32" Nullable="false" />
+          <Property Name="CustomerTitle" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerTelephone01" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerTelephone02" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerMobile" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CustomersGroup" Relationship="Self.FK_Customer_CustomersGroup" FromRole="Customer" ToRole="CustomersGroup" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="CustomersGroup">
+          <Key>
+            <PropertyRef Name="CustomerGroupID" />
+          </Key>
+          <Property Name="CustomerGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_CustomersGroup" FromRole="CustomersGroup" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="GroupsPrivilege">
+          <Key>
+            <PropertyRef Name="UserGroupID" />
+            <PropertyRef Name="URL" />
+          </Key>
+          <Property Name="UserGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsCretae" Type="Boolean" Nullable="false" />
+          <Property Name="IsEdit" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="IsView" Type="Boolean" />
+          <Property Name="IsPrint" Type="Boolean" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Inquiry">
+          <Key>
+            <PropertyRef Name="InquiryID" />
+          </Key>
+          <Property Name="InquiryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="InquiryStatusID" Type="Int32" Nullable="false" />
+          <Property Name="HandledBy" Type="Int32" Nullable="false" />
+          <Property Name="AllocatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Telephone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NextInqDate" Type="DateTime" Precision="3" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="InquiryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Inquiry_Order" FromRole="Inquiry" ToRole="Order" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Inquiry_User" FromRole="Inquiry" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Inquiry_User1" FromRole="Inquiry" ToRole="User" />
+          <NavigationProperty Name="InquiryFiles" Relationship="Self.FK_InquiryFile_Inquiry" FromRole="Inquiry" ToRole="InquiryFile" />
+        </EntityType>
+        <EntityType Name="InquiryFile">
+          <Key>
+            <PropertyRef Name="InquiryFileID" />
+          </Key>
+          <Property Name="InquiryFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InquiryID" Type="Int32" Nullable="false" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InquiryFileImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Inquiry" Relationship="Self.FK_InquiryFile_Inquiry" FromRole="InquiryFile" ToRole="Inquiry" />
+        </EntityType>
+        <EntityType Name="InquiryStatu">
+          <Key>
+            <PropertyRef Name="InquiryStstusID" />
+          </Key>
+          <Property Name="InquiryStstusID" Type="Int32" Nullable="false" />
+          <Property Name="InquiryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InquirySequence" Type="Int32" Nullable="false" />
+          <Property Name="InquiryStatus" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationID" />
+          </Key>
+          <Property Name="LocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationRemarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocationStatus" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Location" FromRole="Location" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="RegisteredDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReferenceUserID" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="HandledByUserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Inquiries" Relationship="Self.FK_Inquiry_Order" FromRole="Order" ToRole="Inquiry" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Order_Location" FromRole="Order" ToRole="Location" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Order_User1" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserCode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPhone01" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPhone02" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserGroupID" Type="Int32" Nullable="false" />
+          <Property Name="UserStatus" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Inquiries" Relationship="Self.FK_Inquiry_User" FromRole="User" ToRole="Inquiry" />
+          <NavigationProperty Name="Inquiries1" Relationship="Self.FK_Inquiry_User1" FromRole="User" ToRole="Inquiry" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="Orders1" Relationship="Self.FK_Order_User1" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="UserGroups" Relationship="Self.UsersGroup" FromRole="User" ToRole="UserGroup" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="UserGroupID" />
+          </Key>
+          <Property Name="UserGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.UsersGroup" FromRole="UserGroup" ToRole="User" />
+        </EntityType>
+        <EntityType Name="OrderSummery">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="OrderCode" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="CustomerID" />
+            <PropertyRef Name="RegisteredDate" />
+            <PropertyRef Name="OrderName" />
+            <PropertyRef Name="ReferenceUserID" />
+            <PropertyRef Name="CreatedDate" />
+            <PropertyRef Name="CreatedUserID" />
+            <PropertyRef Name="HandledByUserID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="RegisteredDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReferenceUserID" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int32" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="HandledByUserID" Type="Int32" Nullable="false" />
+          <Property Name="LocationName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReferenceUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InquiryID" Type="Int32" />
+          <Property Name="InquiryStatus" Type="Boolean" />
+          <Property Name="InquiryStatusID" Type="Int32" />
+          <Property Name="InquiryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HandledBy" Type="Int32" />
+          <Property Name="HandledByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AllocatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Telephone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="InquiryRemark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NextInqDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Customer_CustomersGroup">
+          <End Role="CustomersGroup" Type="Self.CustomersGroup" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomersGroup">
+              <PropertyRef Name="CustomerGroupID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CustomerGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="HandledBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inquiry_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Inquiry">
+              <PropertyRef Name="ModifiedUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InquiryFile_Inquiry">
+          <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="1" />
+          <End Role="InquiryFile" Type="Self.InquiryFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inquiry">
+              <PropertyRef Name="InquiryID" />
+            </Principal>
+            <Dependent Role="InquiryFile">
+              <PropertyRef Name="InquiryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="LocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ReferenceUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="HandledByUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersGroup">
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SmartCRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AutoNumbers" EntityType="Self.AutoNumber" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="CustomersGroups" EntityType="Self.CustomersGroup" />
+          <EntitySet Name="GroupsPrivileges" EntityType="Self.GroupsPrivilege" />
+          <EntitySet Name="Inquiries" EntityType="Self.Inquiry" />
+          <EntitySet Name="InquiryFiles" EntityType="Self.InquiryFile" />
+          <EntitySet Name="InquiryStatus" EntityType="Self.InquiryStatu" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
+          <EntitySet Name="OrderSummeries" EntityType="Self.OrderSummery" />
+          <AssociationSet Name="FK_Customer_CustomersGroup" Association="Self.FK_Customer_CustomersGroup">
+            <End Role="CustomersGroup" EntitySet="CustomersGroups" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_Order" Association="Self.FK_Inquiry_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Inquiry" EntitySet="Inquiries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_User" Association="Self.FK_Inquiry_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Inquiry" EntitySet="Inquiries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inquiry_User1" Association="Self.FK_Inquiry_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Inquiry" EntitySet="Inquiries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InquiryFile_Inquiry" Association="Self.FK_InquiryFile_Inquiry">
+            <End Role="Inquiry" EntitySet="Inquiries" />
+            <End Role="InquiryFile" EntitySet="InquiryFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Location" Association="Self.FK_Order_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User1" Association="Self.FK_Order_User1">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="UsersGroup" Association="Self.UsersGroup">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserGroup" EntitySet="UserGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartCRMModelStoreContainer" CdmEntityContainer="SmartCRMEntities">
+          <EntitySetMapping Name="AutoNumbers">
+            <EntityTypeMapping TypeName="SmartCRMModel.AutoNumber">
+              <MappingFragment StoreEntitySet="AutoNumber">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Autonumber1" ColumnName="Autonumber" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="SmartCRMModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerGroupID" ColumnName="CustomerGroupID" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="CustomerOrigin" ColumnName="CustomerOrigin" />
+                <ScalarProperty Name="CustomerTitle" ColumnName="CustomerTitle" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerTelephone01" ColumnName="CustomerTelephone01" />
+                <ScalarProperty Name="CustomerTelephone02" ColumnName="CustomerTelephone02" />
+                <ScalarProperty Name="CustomerMobile" ColumnName="CustomerMobile" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomersGroups">
+            <EntityTypeMapping TypeName="SmartCRMModel.CustomersGroup">
+              <MappingFragment StoreEntitySet="CustomersGroup">
+                <ScalarProperty Name="CustomerGroupID" ColumnName="CustomerGroupID" />
+                <ScalarProperty Name="CustomerGroupName" ColumnName="CustomerGroupName" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupsPrivileges">
+            <EntityTypeMapping TypeName="SmartCRMModel.GroupsPrivilege">
+              <MappingFragment StoreEntitySet="GroupsPrivilege">
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="IsCretae" ColumnName="IsCretae" />
+                <ScalarProperty Name="IsEdit" ColumnName="IsEdit" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsView" ColumnName="IsView" />
+                <ScalarProperty Name="IsPrint" ColumnName="IsPrint" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inquiries">
+            <EntityTypeMapping TypeName="SmartCRMModel.Inquiry">
+              <MappingFragment StoreEntitySet="Inquiry">
+                <ScalarProperty Name="InquiryID" ColumnName="InquiryID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="InquiryStatusID" ColumnName="InquiryStatusID" />
+                <ScalarProperty Name="HandledBy" ColumnName="HandledBy" />
+                <ScalarProperty Name="AllocatedDate" ColumnName="AllocatedDate" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="NextInqDate" ColumnName="NextInqDate" />
+                <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="InquiryName" ColumnName="InquiryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InquiryFiles">
+            <EntityTypeMapping TypeName="SmartCRMModel.InquiryFile">
+              <MappingFragment StoreEntitySet="InquiryFile">
+                <ScalarProperty Name="InquiryFileID" ColumnName="InquiryFileID" />
+                <ScalarProperty Name="InquiryID" ColumnName="InquiryID" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="InquiryFileImage" ColumnName="InquiryFileImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InquiryStatus">
+            <EntityTypeMapping TypeName="SmartCRMModel.InquiryStatu">
+              <MappingFragment StoreEntitySet="InquiryStatus">
+                <ScalarProperty Name="InquiryStstusID" ColumnName="InquiryStstusID" />
+                <ScalarProperty Name="InquiryName" ColumnName="InquiryName" />
+                <ScalarProperty Name="InquirySequence" ColumnName="InquirySequence" />
+                <ScalarProperty Name="InquiryStatus" ColumnName="InquiryStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="SmartCRMModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="LocationRemarks" ColumnName="LocationRemarks" />
+                <ScalarProperty Name="LocationStatus" ColumnName="LocationStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SmartCRMModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="ReferenceUserID" ColumnName="ReferenceUserID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="HandledByUserID" ColumnName="HandledByUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SmartCRMModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserFullName" ColumnName="UserFullName" />
+                <ScalarProperty Name="UserPhone01" ColumnName="UserPhone01" />
+                <ScalarProperty Name="UserPhone02" ColumnName="UserPhone02" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="SmartCRMModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+                <ScalarProperty Name="UserGroupName" ColumnName="UserGroupName" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSummeries">
+            <EntityTypeMapping TypeName="SmartCRMModel.OrderSummery">
+              <MappingFragment StoreEntitySet="OrderSummery">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="OrderName" ColumnName="OrderName" />
+                <ScalarProperty Name="ReferenceUserID" ColumnName="ReferenceUserID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="HandledByUserID" ColumnName="HandledByUserID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ReferenceUser" ColumnName="ReferenceUser" />
+                <ScalarProperty Name="InquiryID" ColumnName="InquiryID" />
+                <ScalarProperty Name="InquiryStatus" ColumnName="InquiryStatus" />
+                <ScalarProperty Name="InquiryStatusID" ColumnName="InquiryStatusID" />
+                <ScalarProperty Name="InquiryName" ColumnName="InquiryName" />
+                <ScalarProperty Name="HandledBy" ColumnName="HandledBy" />
+                <ScalarProperty Name="HandledByName" ColumnName="HandledByName" />
+                <ScalarProperty Name="AllocatedDate" ColumnName="AllocatedDate" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="InquiryRemark" ColumnName="InquiryRemark" />
+                <ScalarProperty Name="NextInqDate" ColumnName="NextInqDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersGroup" TypeName="SmartCRMModel.UsersGroup" StoreEntitySet="UsersGroup">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserID" ColumnName="UserID" />
+            </EndProperty>
+            <EndProperty Name="UserGroup">
+              <ScalarProperty Name="UserGroupID" ColumnName="UserGroupID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

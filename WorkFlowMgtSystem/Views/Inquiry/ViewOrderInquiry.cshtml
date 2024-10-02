@@ -1,0 +1,195 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.Inquiry>
+@{
+    ViewBag.Title = "View Order Inquiry";
+    //ViewBag.OrderID = 0;
+    //ViewBag.Order = "";
+
+
+}
+
+<div class="box">
+
+
+    <div class="box-header">
+        <h3 class="box-title">Order Inquiry @Model.First().Order.OrderCode</h3>
+        @*// <h1>@ViewBag.Order</h1>*@
+    </div>
+    <!-- /.box-header ViewBag.Order-->
+
+    <div class="box-footer">
+        <div class="actionBar">
+
+            <div class="btn btn-primary pl_add btn-small pull-left">
+                @*@Html.ActionLink("New Inquiry", "CreateInquiry", "Inquiry", null, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })*@
+                @Html.ActionLink("New Inquiry", "CreateInquiry", "Inquiry", new { id = Model.First().OrderID }, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="box-body">
+
+
+        <table id="example1Customer" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    @*<th>Customer ID</th>*@
+                    <th>Customer</th>
+                    <th>Name</th>
+                    <th>Telephone</th>
+                    @*<th>Order ID</th>*@
+                    <th>Order Code</th>
+                    <th>Registered Date</th>
+                    <th>Order</th>
+                    <th>HandledBy</th>
+                    <th>Remark</th>
+                    @*  <th></th>*@
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                @foreach (var item in Model)
+                {
+
+
+                    <tr>
+                        @*<td>@Html.DisplayFor(modelItem => item.Order.CustomerID)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.Order.Customer.CustomerCode) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Order.Customer.CustomerName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Order.Customer.CustomerMobile)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.Order.OrderID)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.Order.OrderCode)</td>
+
+                        @{
+
+                            var sx = item.Order.RegisteredDate.ToShortDateString() + " " + item.Order.CreatedDate.ToShortTimeString();
+
+                        }
+                        <td>@sx</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.Order.RegisteredDate)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.Order.OrderName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Order.User.UserFullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Order.Remark)</td>
+                        @*<td>@Html.ActionLink("Edit", "EditOrder", new { id = item.OrderID })</td>*@
+                        <td>@Html.ActionLink("Inquiry", "ViewOrderInquiry", new { id = item.OrderID })</td>
+
+                    </tr>
+                                break;
+                            }
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    @*<th>Inquiry ID</th>
+                        <th>OrderID</th>
+                        <th>InquiryStatusID</th>
+                        <th>HandledBy</th>
+                        <th>AllocatedDate</th>
+                        <th>Telephone</th>
+                        <th>Remark</th>
+                        <th>NextInqDate</th>
+                        <th>AddedDate</th>*@
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="box-body">
+
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    @*<th>InquiryID</th>*@
+                    <th>Inquiry Name</th>
+                    <th>Handled By</th>
+                    <th>Allocated Date</th>
+                    <th>Telephone</th>
+                    <th>Remark</th>
+                    <th>NextInq Date</th>
+                    @*<th></th>*@
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{int RowNo = 1;}
+                @foreach (var item in Model)
+                {
+                    item.InquiryIdx = RowNo++;
+
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.InquiryIdx)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.InquiryID)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.InquiryName) </td>
+                        <td>@Html.DisplayFor(modelItem => item.User.UserFullName)</td>
+                        @{
+
+                            var sx = item.AllocatedDate.ToShortDateString() + " " + item.AddedDate.ToShortTimeString();
+
+                        }
+                        <td>@sx</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.AllocatedDate)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.Telephone)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+
+
+
+                        <td>@Html.DisplayFor(modelItem => item.NextInqDate)</td>
+                        @* <td>@Html.ActionLink("Edit", "EditInquiry", new { id = item.InquiryID } )</td>*@
+                        @*  <td>@Html.ActionLink("Edit", "EditInquiry", new { id = item.InquiryID })</td>*@
+                        @*<td>@Html.ActionLink("Inquiry Image", "~/InquiryFile/Index",  new { id = item.OrderID })</td>*@
+
+                        <td>
+                            @Html.ActionLink(
+linkText: "Inquiry Image",
+actionName: "Index",
+controllerName: "InquiryFile",
+routeValues: new
+{
+    id = item.InquiryID,
+    OrderID = item.OrderID
+},
+    htmlAttributes: null
+)
+                        </td>
+
+                    </tr>
+                                //break;
+                            }
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>InquiryID</th>
+                    <th>Inquiry Name</th>
+                    <th>HandledBy</th>
+                    <th>Allocated Date</th>
+                    <th>Telephone</th>
+                    <th>Remark</th>
+                    <th>NextInq Date</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="box-footer">
+        <div class="actionBar">
+
+            <div class="btn btn-primary pl_add btn-small pull-left">
+                @Html.ActionLink("New Inquiry", "CreateInquiry", "Inquiry", new { id = Model.First().OrderID }, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+            </div>
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>

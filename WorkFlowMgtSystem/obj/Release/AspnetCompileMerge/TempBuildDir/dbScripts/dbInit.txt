@@ -1,0 +1,6 @@
+﻿DELETE FROM InquiryFile
+DELETE FROM Inquiry
+DELETE FROM [Order]
+DELETE FROM Customer
+delete 
+  FROM [SmartCRM].[dbo].[AutoNumber]

@@ -1,0 +1,296 @@
+﻿
+@model WorkFlowMgtSystem.Models.ViewModels.CustomerEx
+@{
+    ViewBag.Title = "Create Customer";
+}
+
+
+<div class="col-md-12">
+    <!-- general form elements -->
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Create Customer</h3>
+            <div class="btn btn-info pl_add btn-small pull-right">
+                @Html.ActionLink("View All Customers", "ViewAllCustomers", null, new { @style = "font-size: 12px;color:white;font-family: 'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+            </div>
+
+        </div>
+
+        <div role="form">
+            @using (Html.BeginForm("CreateCustomer", "Customer", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div>
+                    @if (ViewBag.Status == "1")
+                    {
+                        <div class="form-group has-success">
+                            <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i>Customer @ViewBag.Customer Created sucessfully!</label>
+                        </div>
+                    }
+                    else if (ViewBag.Status == "2")
+                    {
+                        <div class="form-group has-warning">
+                            <label class="control-label" for="inputWarning"> <i class="fa fa-bell-o"></i> Customer @ViewBag.Customer already exists! </label>
+                        </div>
+                    }
+                    else if (ViewBag.Status == "3")
+                    {
+                        <div class="form-group has-error">
+                            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Can not create customer @ViewBag.Customer ! </label>
+                        </div>
+                    }
+                </div>
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Customer Code</label>
+                        @Html.TextBoxFor(model => model.CustomerCode, new { @class = "form-control", MaxLength = 8, Placeholder = "Code", Style = "width:20%" })
+                        @Html.ValidationMessageFor(model => model.CustomerCode, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Title</label>
+                        <select id="CustomerTitle" name="CustomerTitle" Style="width:20%" class="form-control">
+                            <option value="Mr">Mr.</option>
+                            <option value="Mrs">Mrs.</option>
+                            <option value="Miss">Miss.</option>
+                            <option value="Dr">Dr.</option>
+                            <option value="Prof">Prof.</option>
+                            <option value="Rev">Rev.</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.CustomerTitle, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Full Name</label>
+                        @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control", Placeholder = "Full Name", Style = "width:50%" })
+                        @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Address</label>
+                        @Html.TextAreaFor(model => model.CustomerAddress, new { @class = "form-control", Placeholder = "Address", Style = "width:50%" })
+                        @Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mobile</label>
+                        @Html.TextBoxFor(model => model.CustomerMobile, new { @class = "form-control", Placeholder = "Mobile", Style = "width:50%" })
+                        @Html.ValidationMessageFor(model => model.CustomerMobile, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tel 01</label>
+                        @Html.TextBoxFor(model => model.CustomerTelephone01, new { @class = "form-control", Placeholder = "Tel 01", Style = "width:50%" })
+                        @Html.ValidationMessageFor(model => model.CustomerTelephone01, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tel 02</label>
+                        @Html.TextBoxFor(model => model.CustomerTelephone02, new { @class = "form-control", Placeholder = "Tel 02", Style = "width:50%" })
+                        @Html.ValidationMessageFor(model => model.CustomerTelephone02, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        @Html.TextBoxFor(model => model.CustomerEmail, new { @class = "form-control", Placeholder = "Customer Email", Style = "width:50%", type = "email" })
+                        @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Customer Origin</label>
+                        <select class="form-control" style="width:50%" name="CustomerOrigin" id="CustomerOrigin"></select>
+                        @Html.ValidationMessageFor(model => model.CustomerOrigin, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Customer Group</label>
+                        <select class="form-control" style="width:50%" name="CustomerGroupID" id="CustomerGroupID"></select>
+                        @Html.ValidationMessageFor(model => model.CustomerGroupID, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Remark</label>
+                        @Html.TextAreaFor(model => model.Remark, new { @class = "form-control", Placeholder = "Remark", Style = "width:50%" })
+                        @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+
+
+                    </div>
+
+                    <div class="checkbox">
+
+                        <label class="col-md-1">Is Active</label>
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(model => model.IsActive, new { @class = "flat", @checked = true })
+
+                        </div>
+
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Order Code</label>
+                        @Html.TextBoxFor(model => model.Order.OrderCode, new { @class = "form-control", Placeholder = "Order Code", Style = "width:20%", type = "text" })
+                        @Html.ValidationMessageFor(model => model.Order.OrderCode, "", new { @class = "text-danger" })
+
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Order Date</label>
+                        @Html.TextBoxFor(model => model.Order.RegisteredDate, new { @class = "form-control", Placeholder = "Order Date", Style = "width:20%", type = "date" })
+                        @Html.ValidationMessageFor(model => model.Order.RegisteredDate, "", new { @class = "text-danger" })
+
+
+                    </div>
+
+
+                    @if (System.Configuration.ConfigurationManager.AppSettings["CutomerOrder"] == "Y")
+                    {
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Order</label>
+                            @Html.TextAreaFor(model => model.Order.OrderName, new { @class = "form-control", Placeholder = "Order", Style = "width:50%" })
+                            @Html.ValidationMessageFor(model => model.Order.OrderName, "", new { @class = "text-danger" })
+                        </div>
+                    }
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Reference Person</label>
+                        <select class="form-control" style="width:50%" name="ReferenceUserID" id="ReferenceUserID"></select>
+                        @Html.ValidationMessageFor(model => model.ReferenceUserID, "", new { @class = "text-danger" })
+                    </div>
+
+                    @*<div class="form-group">
+                            <label for="exampleInputEmail1">Order Remark</label>
+                            @Html.TextBoxFor(model => model.Order.Remark, new { @class = "form-control", Placeholder = "Remark", Style = "width:50%" , @Value = "" })
+                            @Html.ValidationMessageFor(model => model.Order.Remark, "", new { @class = "text-danger" })
+
+
+                        </div>*@
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Inquiry Status</label>
+                        <select class="form-control" style="width:50%" name="InquiryStatusID" id="InquiryStatusID"></select>
+                        @Html.ValidationMessageFor(model => model.InquiryStatusID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <div class="actionBar">
+
+                            <div class="btn btn-primary pl_add btn-small pull-left">
+                                @Html.ActionLink("Clear", "CreateCustomer", null, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+<script>
+
+    $.getJSON("@Url.Action("GetCustomerGroups", "Customer")", function (data) {
+
+        var DropDown = $("#CustomerGroupID");
+
+        DropDown.empty();
+        DropDown.append("<option value='0'>-- Select Customer Group --</option>");
+
+        $.each(JSON.parse(data), function (index, optionaldata) {
+            DropDown.append($('<option />', { value: optionaldata.UserGroupId }).html(optionaldata.UserGroupName));
+        });
+
+        if ('@ViewBag.CustomerGroupID') {
+            $('#CustomerGroupID').val(@ViewBag.CustomerGroupID).trigger("change");
+        } else {
+            $('#CustomerGroupID').val(0).trigger("change");
+        }
+
+
+    });
+
+</script>
+
+<script>
+
+    $.getJSON("@Url.Action("GetUsers", "User")", function (data) {
+
+        var DropDown = $("#ReferenceUserID");
+
+        DropDown.empty();
+        DropDown.append("<option value='0'>-- Select User --</option>");
+
+        $.each(JSON.parse(data), function (index, optionaldata) {
+            DropDown.append($('<option />', { value: optionaldata.UserGroupId }).html(optionaldata.UserGroupName));
+        });
+
+        if ('@ViewBag.ReferenceUserID') {
+            $('#ReferenceUserID').val(@ViewBag.ReferenceUserID).trigger("change");
+        } else {
+            $('#ReferenceUserID').val(0).trigger("change");
+        }
+
+
+    });
+
+</script>
+
+<script>
+
+    $.getJSON("@Url.Action("GetLocations", "Customer")", function (data) {
+
+        var DropDown = $("#CustomerOrigin");
+
+        DropDown.empty();
+        DropDown.append("<option value='0'>-- Select Customer Origine --</option>");
+
+        $.each(JSON.parse(data), function (index, optionaldata) {
+            DropDown.append($('<option />', { value: optionaldata.UserGroupId }).html(optionaldata.UserGroupName));
+        });
+
+        if ('@ViewBag.CustomerOrigin') {
+            $('#CustomerOrigin').val(@ViewBag.CustomerOrigin).trigger("change");
+        } else {
+            $('#CustomerOrigin').val(0).trigger("change");
+        }
+
+
+    });
+
+</script>
+
+<script>
+
+    $.getJSON("@Url.Action("GetInquiryStatus", "InquiryStatus")", function (data) {
+
+        var DropDown = $("#InquiryStatusID");
+
+        DropDown.empty();
+        DropDown.append("<option value='0'>-- Select Inquiry Status --</option>");
+
+        $.each(JSON.parse(data), function (index, optionaldata) {
+            DropDown.append($('<option />', { value: optionaldata.InquiryStstusID }).html(optionaldata.InquiryName));
+        });
+
+        if ('@ViewBag.InquiryStatusID') {
+            $('#InquiryStatusID').val(@ViewBag.InquiryStatusID).trigger("change");
+        } else {
+            $('#InquiryStatusID').val(0).trigger("change");
+        }
+
+
+    });
+
+</script>

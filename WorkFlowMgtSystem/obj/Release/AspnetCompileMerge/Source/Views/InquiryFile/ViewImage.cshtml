@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.InquiryFile>
+
+@{
+    ViewBag.Title = "View Inquiry Image";
+}
+
+<h2>View Inquiry Image</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InquiryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InquiryFileImage)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.InquiryIdx)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InquiryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageName)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.InquiryFileImage ,new { type ="image" })*@
+            <img src="@Url.Content(item.InquiryFileImage)", width="1000" height="1000"/>
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.InquiryIdx)
+        </td>*@
+        <td>
+          @*  @Html.ActionLink("Edit", "Edit", new { id=item.InquiryFileID }) |*@
+            @Html.ActionLink(
+linkText: "Details",
+actionName: "ViewOrderInquiry",
+controllerName: "Inquiry",
+routeValues: new
+{
+    id = item.Inquiry.OrderID
+    
+},
+    htmlAttributes: null
+)|
+            @*@Html.ActionLink("Details", "Details", new { id=item.InquiryFileID }) |*@
+          @*  @Html.ActionLink("Delete", "Delete", new { id=item.InquiryFileID })*@
+        </td>
+    </tr>
+}
+
+</table>

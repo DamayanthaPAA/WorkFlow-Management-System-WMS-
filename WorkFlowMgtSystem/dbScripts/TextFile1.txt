@@ -1,0 +1,28 @@
+﻿CREATE VIEW OrderSummery AS
+SELECT * ,(SELECT LocationName FROM Location WHERE Location.LocationID = [Order].LocationID) AS LocationName ,
+(SELECT Customer.CustomerCode  FROM Customer WHERE Customer.CustomerID =[Order].CustomerID ) AS CustomerCode ,
+(SELECT Customer.CustomerName  FROM Customer WHERE Customer.CustomerID =[Order].CustomerID ) AS CustomerName ,
+(SELECT [User].UserFullName FROM [User] WHERE [User].UserID =[Order].ReferenceUserID) AS ReferenceUser ,
+(SELECT top 1(Inquiry.InquiryID) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as InquiryID ,
+(SELECT InquiryStatus.InquiryStatus FROM InquiryStatus where InquiryStatus.InquiryStstusID=(SELECT top 1(InquiryStatusID) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc)) as InquiryStatus ,
+(SELECT top 1(InquiryStatusID) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as InquiryStatusID ,
+(SELECT top 1(InquiryName) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as InquiryName ,
+(SELECT top 1(HandledBy) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as HandledBy ,
+--(SELECT top 1(HandledBy) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as HandledBy ,
+(select [User].UserFullName as HandledByName from [User] where [User].UserID=(SELECT top 1(HandledBy) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc)) as HandledByName ,
+(SELECT top 1(AllocatedDate) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as AllocatedDate ,
+(SELECT top 1(Telephone) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as Telephone ,
+(SELECT top 1(Remark) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as InquiryRemark ,
+(SELECT top 1(NextInqDate) FROM Inquiry where Inquiry.OrderID =[Order].OrderID order by Inquiry.InquiryID desc) as NextInqDate 
+FROM [Order]
+
+create view OrderSummerySum as
+select ROW_NUMBER() OVER(ORDER BY OrderSummery.InquiryName DESC) AS Row,OrderSummery.InquiryName,COUNT(OrderSummery.InquiryName) as NoOfJob,InquiryStatusID  from OrderSummery 
+GROUP BY InquiryName, InquiryStatusID
+order by InquiryStatusID
+
+
+
+
+12-12-2018
+alter table Inquiry alter column InquiryName nvarchar(150) not null

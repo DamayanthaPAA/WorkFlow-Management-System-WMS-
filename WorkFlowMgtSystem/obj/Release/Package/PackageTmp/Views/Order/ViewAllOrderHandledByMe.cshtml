@@ -1,0 +1,113 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.Order>
+@{
+    ViewBag.Title = "View All Order";
+
+}
+
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">All Customers Order</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Order No</th>
+                    @if (System.Configuration.ConfigurationManager.AppSettings["CustomerCodeOrderDetaile"] == "Y")
+                    {
+                        <th>Client Code</th>
+                    }
+                    <th>Full Name</th>
+                    <th>Contact No</th>
+                    @*<th>ID</th>*@
+                    <th>Location</th>
+
+                    <th>Order Date</th>
+                    @if (System.Configuration.ConfigurationManager.AppSettings["AllCustomersOrderDetaile"] == "Y")
+                    {
+                        <th>Order</th>
+                    }
+                   @* <th>Reference Person</th>*@
+                    <th>Remark</th>
+
+
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>@Html.ActionLink("Inquiry", "ViewOrderInquiry", new { id = item.OrderID })</td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderCode)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.CustomerID)</td>*@
+                        @if (System.Configuration.ConfigurationManager.AppSettings["CustomerCodeOrderDetaile"] == "Y")
+                        {
+
+                            <td>@Html.DisplayFor(modelItem => item.Customer.CustomerCode) </td>
+                        }
+                        <td>@Html.DisplayFor(modelItem => item.Customer.CustomerName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Customer.CustomerMobile)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.OrderID)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.Location.LocationName)</td>
+
+                        @{
+
+                            var sx = item.RegisteredDate.ToShortDateString() + " " + item.CreatedDate.ToShortTimeString();
+
+                        }
+                        <td>@sx</td>
+                        @if (System.Configuration.ConfigurationManager.AppSettings["AllCustomersOrderDetaile"] == "Y")
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.OrderName)</td>
+                        }
+                        @*<td>@Html.DisplayFor(modelItem => item.User.UserFullName)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+                        <td>@Html.ActionLink("Edit", "EditOrder", new { id = item.OrderID })</td>
+
+
+                    </tr>
+                            }
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    <th>Order No</th>
+                    @if (System.Configuration.ConfigurationManager.AppSettings["CustomerCodeOrderDetaile"] == "Y")
+                    {
+                        <th>Client Code</th>
+                    }
+                    <th>Full Name</th>
+                    <th>Contact No</th>
+                    @*<th>ID</th>*@
+                    <th>Location</th>
+
+                    <th>Order Date</th>
+                    @if (System.Configuration.ConfigurationManager.AppSettings["AllCustomersOrderDetaile"] == "Y")
+                    {
+                        <th>Order</th>
+                    }
+                   @* <th>Reference Person</th>*@
+                    <th>Remark</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="box-footer">
+        <div class="actionBar">
+
+            <div class="btn btn-primary pl_add btn-small pull-left">
+                @Html.ActionLink(linkText: "New Customer", actionName: "CreateCustomer", controllerName: "Customer", routeValues: null, htmlAttributes: new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+            </div>
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>

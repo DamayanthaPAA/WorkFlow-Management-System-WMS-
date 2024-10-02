@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SmartCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="CustomerOrigin" Type="int" Nullable="false" />
+    <Property Name="CustomerTitle" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CustomerAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerTelephone01" Type="nvarchar" MaxLength="13" />
+    <Property Name="CustomerTelephone02" Type="nvarchar" MaxLength="13" />
+    <Property Name="CustomerMobile" Type="nvarchar" MaxLength="13" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CustomerEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="JoiningDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupsPrivilege">
+    <Key>
+      <PropertyRef Name="UserGroupID" />
+      <PropertyRef Name="URL" />
+    </Key>
+    <Property Name="UserGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsCretae" Type="bit" Nullable="false" />
+    <Property Name="IsEdit" Type="bit" />
+    <Property Name="IsDelete" Type="bit" />
+    <Property Name="IsView" Type="bit" />
+    <Property Name="IsPrint" Type="bit" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Inquiry">
+    <Key>
+      <PropertyRef Name="InquiryID" />
+    </Key>
+    <Property Name="InquiryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="InquiryStatusID" Type="int" Nullable="false" />
+    <Property Name="HandledBy" Type="int" Nullable="false" />
+    <Property Name="AllocatedDate" Type="datetime" Nullable="false" />
+    <Property Name="Telephone" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NextInqDate" Type="datetime" Nullable="false" />
+    <Property Name="AddedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InquiryStatus">
+    <Key>
+      <PropertyRef Name="InquiryStstusID" />
+    </Key>
+    <Property Name="InquiryStstusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InquiryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="InquirySequence" Type="int" Nullable="false" />
+    <Property Name="InquiryStatus" Type="bit" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LocationRemarks" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="13" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="13" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="13" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactPersonName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationStatus" Type="bit" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="RegisteredDate" Type="datetime" Nullable="false" />
+    <Property Name="OrderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ReferenceUserID" Type="int" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EnrollmentDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCode" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="UserFullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserPhone01" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="UserPhone02" Type="varchar" MaxLength="13" />
+    <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserGroupID" Type="int" Nullable="false" />
+    <Property Name="UserStatus" Type="bit" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserGroup">
+    <Key>
+      <PropertyRef Name="UserGroupID" />
+    </Key>
+    <Property Name="UserGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGroupName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CreatedUserID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUserID" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UsersGroup">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserGroupID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="UserGroupID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Customer_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="ModifiedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupsPrivilege_UserGroup">
+    <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1" />
+    <End Role="GroupsPrivilege" Type="Self.GroupsPrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroup">
+        <PropertyRef Name="UserGroupID" />
+      </Principal>
+      <Dependent Role="GroupsPrivilege">
+        <PropertyRef Name="UserGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inquiry_InquiryStatus">
+    <End Role="InquiryStatus" Type="Self.InquiryStatus" Multiplicity="1" />
+    <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InquiryStatus">
+        <PropertyRef Name="InquiryStstusID" />
+      </Principal>
+      <Dependent Role="Inquiry">
+        <PropertyRef Name="InquiryStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inquiry_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="Inquiry">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inquiry_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Inquiry">
+        <PropertyRef Name="HandledBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inquiry_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Inquiry" Type="Self.Inquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Inquiry">
+        <PropertyRef Name="ModifiedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InquiryStatus_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="InquiryStatus" Type="Self.InquiryStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="InquiryStatus">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InquiryStatus_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="InquiryStatus" Type="Self.InquiryStatus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="InquiryStatus">
+        <PropertyRef Name="ModifiedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="ModifiedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="LocationID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ReferenceUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CreatedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User2">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ModifiedUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersGroup_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UsersGroup" Type="Self.UsersGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UsersGroup">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersGroup_UserGroup">
+    <End Role="UserGroup" Type="Self.UserGroup" Multiplicity="1" />
+    <End Role="UsersGroup" Type="Self.UsersGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGroup">
+        <PropertyRef Name="UserGroupID" />
+      </Principal>
+      <Dependent Role="UsersGroup">
+        <PropertyRef Name="UserGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SmartCRMModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupsPrivilege" EntityType="Self.GroupsPrivilege" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inquiry" EntityType="Self.Inquiry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InquiryStatus" EntityType="Self.InquiryStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersGroup" EntityType="Self.UsersGroup" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Customer_User" Association="Self.FK_Customer_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_User1" Association="Self.FK_Customer_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupsPrivilege_UserGroup" Association="Self.FK_GroupsPrivilege_UserGroup">
+      <End Role="UserGroup" EntitySet="UserGroup" />
+      <End Role="GroupsPrivilege" EntitySet="GroupsPrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inquiry_InquiryStatus" Association="Self.FK_Inquiry_InquiryStatus">
+      <End Role="InquiryStatus" EntitySet="InquiryStatus" />
+      <End Role="Inquiry" EntitySet="Inquiry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inquiry_Order" Association="Self.FK_Inquiry_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Inquiry" EntitySet="Inquiry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inquiry_User" Association="Self.FK_Inquiry_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Inquiry" EntitySet="Inquiry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inquiry_User1" Association="Self.FK_Inquiry_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Inquiry" EntitySet="Inquiry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InquiryStatus_User" Association="Self.FK_InquiryStatus_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="InquiryStatus" EntitySet="InquiryStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InquiryStatus_User1" Association="Self.FK_InquiryStatus_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="InquiryStatus" EntitySet="InquiryStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_User" Association="Self.FK_Location_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_User1" Association="Self.FK_Location_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Location" Association="Self.FK_Order_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User1" Association="Self.FK_Order_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User2" Association="Self.FK_Order_User2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersGroup_User" Association="Self.FK_UsersGroup_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UsersGroup" EntitySet="UsersGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersGroup_UserGroup" Association="Self.FK_UsersGroup_UserGroup">
+      <End Role="UserGroup" EntitySet="UserGroup" />
+      <End Role="UsersGroup" EntitySet="UsersGroup" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

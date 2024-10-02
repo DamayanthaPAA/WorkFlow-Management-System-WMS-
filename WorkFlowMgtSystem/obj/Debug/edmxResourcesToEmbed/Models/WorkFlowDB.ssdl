@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DesignSolutionsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CustomerMaster">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="CustomerOrigin" Type="int" Nullable="false" />
+    <Property Name="CustomerCurrLocation" Type="int" Nullable="false" />
+    <Property Name="CustomerTitle" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CustomerAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerTelephone01" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerTelephone02" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CustomerMobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerOrder">
+    <Key>
+      <PropertyRef Name="CustomerOrderID" />
+    </Key>
+    <Property Name="CustomerOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="RegisteredDate" Type="datetime" Nullable="false" />
+    <Property Name="AllocatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CustomerOrderName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Reference" Type="int" Nullable="false" />
+    <Property Name="Details" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inquiry">
+    <Key>
+      <PropertyRef Name="InquiryID" />
+    </Key>
+    <Property Name="InquiryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerOrderID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="InquiryStatusID" Type="int" Nullable="false" />
+    <Property Name="HandledBy" Type="int" Nullable="false" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NextInqID" Type="int" Nullable="false" />
+    <Property Name="NextInqDate" Type="datetime" Nullable="false" />
+    <Property Name="AddedDate" Type="datetime" Nullable="false" />
+    <Property Name="AllocatedRef" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InquiryStatusMaster">
+    <Key>
+      <PropertyRef Name="InquiryID" />
+    </Key>
+    <Property Name="InquiryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InquiryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="InquirySequence" Type="int" Nullable="false" />
+    <Property Name="InquiryStatus" Type="int" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationID" />
+    </Key>
+    <Property Name="LocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LocationRemarks" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactPersonName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LocationStatus" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SystemUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserFullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserPhone01" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPhone02" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserGroupID" Type="int" Nullable="false" />
+    <Property Name="UserStatus" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionDocument">
+    <Key>
+      <PropertyRef Name="TransactionDocumentID" />
+    </Key>
+    <Property Name="TransactionDocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionDocumentNumber" Type="int" Nullable="false" />
+    <Property Name="TransactionDocumentName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionRight">
+    <Key>
+      <PropertyRef Name="TransactionRightID" />
+    </Key>
+    <Property Name="TransactionRightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionDocumentID" Type="int" Nullable="false" />
+    <Property Name="TransactionRightCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="IsAccess" Type="bit" Nullable="false" />
+    <Property Name="IsModify" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="IsView" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroup">
+    <Key>
+      <PropertyRef Name="UserGroupID" />
+    </Key>
+    <Property Name="UserGroupID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroupPrivileges">
+    <Key>
+      <PropertyRef Name="UserGroupPrivilegesID" />
+    </Key>
+    <Property Name="UserGroupPrivilegesID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionRightsID" Type="bigint" Nullable="false" />
+    <Property Name="UserGroupID" Type="bigint" Nullable="false" />
+    <Property Name="TransactionTypeID" Type="int" Nullable="false" />
+    <Property Name="IsAccess" Type="bit" Nullable="false" />
+    <Property Name="IsSave" Type="bit" Nullable="false" />
+    <Property Name="IsModify" Type="bit" Nullable="false" />
+    <Property Name="IsView" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreatedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DesignSolutionsModelStoreContainer">
+    <EntitySet Name="CustomerMaster" EntityType="Self.CustomerMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inquiry" EntityType="Self.Inquiry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InquiryStatusMaster" EntityType="Self.InquiryStatusMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemUser" EntityType="Self.SystemUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionDocument" EntityType="Self.TransactionDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionRight" EntityType="Self.TransactionRight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroupPrivileges" EntityType="Self.UserGroupPrivileges" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

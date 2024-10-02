@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.User>
+@{
+    ViewBag.Title = "ViewAllUsers";
+   
+}
+
+
+<div class="box">
+<div class="box-header">
+    <h3 class="box-title">All Users</h3>
+</div>
+<!-- /.box-header -->
+<div class="box-body">
+    <table id="example1" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Code</th>
+                <th>Full Name</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.UserID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserCode)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserFullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserStatus)</td>
+                  
+                    <td>@Html.ActionLink("Edit", "EditUser", new { id = item.UserID })</td>
+                   
+                </tr>
+            }
+        </tbody>
+
+
+
+        <tfoot>
+            <tr>
+                <th>User Id</th>
+                <th>Code</th>
+                <th>Full Name</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<!-- /.box-body -->
+          </div>

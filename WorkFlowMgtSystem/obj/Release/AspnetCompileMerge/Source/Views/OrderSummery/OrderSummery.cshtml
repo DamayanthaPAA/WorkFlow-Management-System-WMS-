@@ -1,0 +1,196 @@
+﻿@model IEnumerable<WorkFlowMgtSystem.Models.OrderSummery>
+@{
+//ViewBag.Title = "Order Summery";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="box">
+
+
+    <div class="box-header">
+        <h3 class="box-title">Order Inquiry @Model.First().HandledByName    @ViewBag.NextDay </h3>
+        @*// <h1>@ViewBag.Order</h1>*@
+    </div>
+    <!-- /.box-header ViewBag.Order-->
+
+    <div class="box-footer">
+        <div class="actionBar">
+
+            <div class="btn btn-primary pl_add btn-small pull-left">
+                @*@Html.ActionLink("New Inquiry", "CreateInquiry", "Inquiry", null, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })*@
+                @*@Html.ActionLink("New Inquiry", "CreateInquiry", "Inquiry", new { id = Model.First().OrderID }, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })*@
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="box-body">
+
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    @*<th>Order ID</th>*@
+                    <th>Order Code</th>
+                    <th>Location Name</th>
+                    @*<th>Customer ID</th>*@
+                    @if (System.Configuration.ConfigurationManager.AppSettings["CustomerCodeOrderDetaile"] == "Y")
+                    {
+                        <th>Client Code</th>
+                    }
+                    <th>Customer Name</th>
+                    <th>Registered Date</th>
+                    @if (System.Configuration.ConfigurationManager.AppSettings["AllCustomersOrderDetaile"] == "Y")
+                    {
+                        <th>Order Name</th>
+
+                        <th>Order Remark</th>
+                    }
+                    @*<th>Inquiry ID</th>*@
+                    <th>Inquiry Name</th>
+                    @*<th>Handled By</th>*@
+                    <th>Handled By Name</th>
+                    <th>Allocated Date</th>
+                    <th>Inquiry Remark</th>
+                    @*<th></th>
+                        <th></th>*@
+
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @{int RowNo = 1;}
+                @foreach (var item in Model)
+                {
+                    item.InquiryIdx = RowNo++;
+
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.InquiryIdx)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.OrderID)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.OrderCode)</td>
+                        <td>@Html.DisplayFor(modelItem => item.LocationName)</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.CustomerID)</td>*@
+                        @if (System.Configuration.ConfigurationManager.AppSettings["CustomerCodeOrderDetaile"] == "Y")
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.CustomerCode)</td>
+                        }
+                        <td>@Html.DisplayFor(modelItem => item.CustomerName)</td>
+                        @{
+
+                            var sx = item.RegisteredDate.ToShortDateString() + " " + item.CreatedDate.ToShortTimeString();
+
+                        }
+                        <td>@sx</td>
+                        @*<td>@Html.DisplayFor(modelItem => item.RegisteredDate)</td>*@
+                        @if (System.Configuration.ConfigurationManager.AppSettings["AllCustomersOrderDetaile"] == "Y")
+                        {
+                            <td>@Html.DisplayFor(modelItem => item.OrderName)</td>
+
+                            <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+                        }
+                        @*<td>@Html.DisplayFor(modelItem => item.InquiryID)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.InquiryName) </td>
+                        @*<td>@Html.DisplayFor(modelItem => item.HandledBy)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.HandledByName)</td>
+
+                        @{
+
+                            var sxe =Convert.ToDateTime( item.AllocatedDate.ToString()).ToShortDateString()  ;
+
+                        }
+                        <td>@sxe</td>
+                       @* <td>@Html.DisplayFor(modelItem => item.AllocatedDate)</td>*@
+                        <td>@Html.DisplayFor(modelItem => item.InquiryRemark)</td>
+
+
+                    </tr>
+
+                            }
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    @*<th>Inquiry ID</th>
+                        <th>OrderID</th>
+                        <th>InquiryStatusID</th>
+                        <th>HandledBy</th>
+                        <th>AllocatedDate</th>
+                        <th>Telephone</th>
+                        <th>Remark</th>
+                        <th>NextInqDate</th>
+                        <th>AddedDate</th>*@
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="box-body">
+
+
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Inquiry Name</th>
+                    <th>No Of Job</th>
+                    @*<th></th>
+                        <th></th>*@
+
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @{int RowNox = 1;}
+                @foreach (var item in Model.FirstOrDefault().orderSummerySume)
+                {
+                    //item.InquiryIdx = RowNox++;
+
+                    <tr>
+                        <td>@RowNox</td>
+                        <td>@item.InquiryName</td>
+                        <td>@item.NoOfJob</td>
+                        @*<td></td>*@
+
+
+                    </tr>
+                    RowNox++;
+                }
+            </tbody>
+
+
+
+            <tfoot>
+                <tr>
+                    <th>#</th>
+                    <th>Inquiry Name</th>
+                    <th>No Of Job</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="box-footer">
+        <div class="actionBar">
+
+            @*<div class="btn btn-primary pl_add btn-small pull-left">
+                    @Html.ActionLink("New Inquiry", "CreateInquiry", "Inquiry", null, new { @style = "font-size: 12px;color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', Sans-Serif;text-decoration: none" })
+                </div>*@
+
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>
